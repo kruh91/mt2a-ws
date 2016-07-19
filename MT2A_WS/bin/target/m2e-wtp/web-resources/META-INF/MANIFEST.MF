@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: MT2A_WS
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Tomislav Hlevnjak
+Implementation-Vendor-Id: hr.optimit
+Build-Jdk: 1.8.0_25
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

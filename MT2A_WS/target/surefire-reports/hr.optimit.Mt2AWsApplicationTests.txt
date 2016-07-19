@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: hr.optimit.Mt2AWsApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 56.942 sec - in hr.optimit.Mt2AWsApplicationTests
