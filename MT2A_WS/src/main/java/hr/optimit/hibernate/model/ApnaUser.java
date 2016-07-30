@@ -4,7 +4,10 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -52,7 +55,7 @@ public class ApnaUser implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 	
 	/** The allowed domains. */
 	private String allowedDomains;
@@ -80,7 +83,7 @@ public class ApnaUser implements java.io.Serializable {
 	 */
 	public ApnaUser(Long userId, String userUsername, String userPassword, String userStatus, String userRole,
 			String userFirstName, String userLastName, Timestamp userCreationTimestamp,
-			Timestamp sysModificationTimestamp, Long sysModificationUser, String allowedDomains) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser, String allowedDomains) {
 		this.userId = userId;
 		this.userUsername = userUsername;
 		this.userPassword = userPassword;
@@ -112,7 +115,7 @@ public class ApnaUser implements java.io.Serializable {
 	 */
 	public ApnaUser(Long userId, String userUsername, String userPassword, String userStatus, String userRole,
 			String userFirstName, String userLastName, String userEmail, Timestamp userCreationTimestamp,
-			Timestamp sysModificationTimestamp, Long sysModificationUser, String allowedDomains) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser, String allowedDomains) {
 		this.userId = userId;
 		this.userUsername = userUsername;
 		this.userPassword = userPassword;
@@ -171,7 +174,7 @@ public class ApnaUser implements java.io.Serializable {
 	 *
 	 * @return the user password
 	 */
-	@Column(name = "USER_PASSWORD", nullable = false, length = 20)
+	@Column(name = "USER_PASSWORD", nullable = false)
 	public String getUserPassword() {
 		return this.userPassword;
 	}
@@ -323,8 +326,9 @@ public class ApnaUser implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER", nullable = false)
-	public Long getSysModificationUser() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -333,7 +337,7 @@ public class ApnaUser implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 

@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -13,6 +14,9 @@ public class Mt2AWsApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
+		StandardPasswordEncoder spe = new StandardPasswordEncoder();
+		System.out.println(spe.encode("test"));
 	}
 
 }
