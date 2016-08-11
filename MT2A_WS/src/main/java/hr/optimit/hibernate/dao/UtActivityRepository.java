@@ -16,10 +16,10 @@ public interface UtActivityRepository extends AbstractJpaRepository<UtActivity, 
 	
 	@Query("select act from UtActivity act"
 			+ " where act.activityUser.userId = :#{#utActivity.activityUser.userId}"
-			+ " and act.startDate = :#{#utActivity.startDate}"
-			+ " or act.endDate = :#{#utActivity.endDate}"
-			+ " or (act.startDate < :#{#utActivity.startDate} and act.endDate > :#{#utActivity.startDate})"
-			+ " or (act.startDate < :#{#utActivity.endDate} and act.endDate > :#{#utActivity.endDate})")
+			+ " and act.activityStartDate = :#{#utActivity.activityStartDate}"
+			+ " or act.activityEndDate = :#{#utActivity.activityEndDate}"
+			+ " or (act.activityStartDate < :#{#utActivity.activityStartDate} and act.activityEndDate > :#{#utActivity.activityStartDate})"
+			+ " or (act.activityStartDate < :#{#utActivity.activityEndDate} and act.activityEndDate > :#{#utActivity.activityEndDate})")
 	public List<UtActivity> findActivitiesForUserWithDateOverlap(UtActivity utActivity);
 	
 }

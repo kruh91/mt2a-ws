@@ -37,7 +37,7 @@ public class UtUser2project implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 
 	/**
 	 * Instantiates a new ut user2project.
@@ -56,7 +56,7 @@ public class UtUser2project implements java.io.Serializable {
 	 * @param sysModificationUser the sys modification user
 	 */
 	public UtUser2project(Long user2projectId, UtProject utProject, Long user2projectUserId,
-			Long user2projectPriority, Timestamp sysModificationTimestamp, Long sysModificationUser) {
+			Long user2projectPriority, Timestamp sysModificationTimestamp, ApnaUser sysModificationUser) {
 		this.user2projectId = user2projectId;
 		this.utProject = utProject;
 		this.user2projectUserId = user2projectUserId;
@@ -170,7 +170,7 @@ public class UtUser2project implements java.io.Serializable {
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
-	public Long getSysModificationUser() {
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -179,7 +179,7 @@ public class UtUser2project implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 
