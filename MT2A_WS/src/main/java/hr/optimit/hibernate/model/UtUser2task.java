@@ -148,7 +148,8 @@ public class UtUser2task implements java.io.Serializable {
 	 *
 	 * @return the sys modification timestamp
 	 */
-	@Column(name = "SYS_MODIFICATION_TIMESTAMP", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
 	public Timestamp getSysModificationTimestamp() {
 		return this.sysModificationTimestamp;
 	}

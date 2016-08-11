@@ -168,7 +168,8 @@ public class UtUser2project implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
 	public Long getSysModificationUser() {
 		return this.sysModificationUser;
 	}

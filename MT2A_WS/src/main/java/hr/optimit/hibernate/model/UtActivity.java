@@ -56,6 +56,7 @@ public class UtActivity implements java.io.Serializable {
 	/** The sys modification timestamp. */
 	private Timestamp sysModificationTimestamp;
 	
+	/** The sys modification user. */
 	private ApnaUser sysModificationUser;
 
 	/**
@@ -225,8 +226,8 @@ public class UtActivity implements java.io.Serializable {
 	 *
 	 * @return the activity start date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ACTIVITY_START_DATE", nullable = false, length = 7)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "ACTIVITY_START_DATE", nullable = false, length = 21)
 	public Date getActivityStartDate() {
 		return this.activityStartDate;
 	}
@@ -245,8 +246,8 @@ public class UtActivity implements java.io.Serializable {
 	 *
 	 * @return the activity end date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ACTIVITY_END_DATE", nullable = false, length = 7)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "ACTIVITY_END_DATE", nullable = false, length = 21)
 	public Date getActivityEndDate() {
 		return this.activityEndDate;
 	}
@@ -329,7 +330,13 @@ public class UtActivity implements java.io.Serializable {
 		return sysModificationUser;
 	}
 	
+	/**
+	 * Sets the sys modification user.
+	 *
+	 * @param sysModificationUser the new sys modification user
+	 */
 	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
+	
 }

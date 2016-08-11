@@ -55,7 +55,7 @@ public class UtTask implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 	
 	/** The ut user2tasks. */
 	private Set<UtUser2task> utUser2tasks = new HashSet<UtUser2task>(0);
@@ -81,7 +81,7 @@ public class UtTask implements java.io.Serializable {
 	 * @param sysModificationUser the sys modification user
 	 */
 	public UtTask(Long taskId, UtProject utProject, String taskName, Date taskStartDate, String taskBillable,
-			Timestamp sysModificationTimestamp, Long sysModificationUser) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser) {
 		this.taskId = taskId;
 		this.utProject = utProject;
 		this.taskName = taskName;
@@ -109,7 +109,7 @@ public class UtTask implements java.io.Serializable {
 	 */
 	public UtTask(Long taskId, UtProject utProject, String taskName, String taskDescription, String taskRef,
 			Date taskStartDate, Date taskEndDate, String taskBillable, Timestamp sysModificationTimestamp,
-			Long sysModificationUser, Set<UtUser2task> utUser2tasks, Set<UtActivity> utActivities) {
+			ApnaUser sysModificationUser, Set<UtUser2task> utUser2tasks, Set<UtActivity> utActivities) {
 		this.taskId = taskId;
 		this.utProject = utProject;
 		this.taskName = taskName;
@@ -227,8 +227,8 @@ public class UtTask implements java.io.Serializable {
 	 *
 	 * @return the task start date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "TASK_START_DATE", nullable = false, length = 7)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "TASK_START_DATE", nullable = false, length = 21)
 	public Date getTaskStartDate() {
 		return this.taskStartDate;
 	}
@@ -247,8 +247,8 @@ public class UtTask implements java.io.Serializable {
 	 *
 	 * @return the task end date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "TASK_END_DATE", length = 7)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "TASK_END_DATE", length = 21)
 	public Date getTaskEndDate() {
 		return this.taskEndDate;
 	}
@@ -305,8 +305,9 @@ public class UtTask implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER", nullable = false)
-	public Long getSysModificationUser() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -315,7 +316,7 @@ public class UtTask implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 

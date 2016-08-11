@@ -55,7 +55,7 @@ public class UtProject implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 	
 	/** The ut tasks. */
 	private Set<UtTask> utTasks = new HashSet<UtTask>(0);
@@ -80,7 +80,7 @@ public class UtProject implements java.io.Serializable {
 	 * @param sysModificationUser the sys modification user
 	 */
 	public UtProject(Long projectId, String projectShortname, Date projectStartDate, String projectBillable,
-			Timestamp sysModificationTimestamp, Long sysModificationUser) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser) {
 		this.projectId = projectId;
 		this.projectShortname = projectShortname;
 		this.projectStartDate = projectStartDate;
@@ -107,7 +107,7 @@ public class UtProject implements java.io.Serializable {
 	 */
 	public UtProject(Long projectId, UtPartner utPartner, String projectShortname, String projectName,
 			String projectDescription, Date projectStartDate, Date projectEndDate, String projectBillable,
-			Timestamp sysModificationTimestamp, Long sysModificationUser, Set<UtTask> utTasks, Set<UtUser2project> utUser2projects) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser, Set<UtTask> utTasks, Set<UtUser2project> utUser2projects) {
 		this.projectId = projectId;
 		this.utPartner = utPartner;
 		this.projectShortname = projectShortname;
@@ -224,8 +224,8 @@ public class UtProject implements java.io.Serializable {
 	 *
 	 * @return the project start date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "PROJECT_START_DATE", nullable = false, length = 7)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "PROJECT_START_DATE", nullable = false, length = 21)
 	public Date getProjectStartDate() {
 		return this.projectStartDate;
 	}
@@ -244,8 +244,8 @@ public class UtProject implements java.io.Serializable {
 	 *
 	 * @return the project end date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name = "PROJECT_END_DATE", length = 7)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "PROJECT_END_DATE", length = 21)
 	public Date getProjectEndDate() {
 		return this.projectEndDate;
 	}
@@ -302,8 +302,9 @@ public class UtProject implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER", nullable = false)
-	public Long getSysModificationUser() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -312,7 +313,7 @@ public class UtProject implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 

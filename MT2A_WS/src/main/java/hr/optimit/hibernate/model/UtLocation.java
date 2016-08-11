@@ -45,7 +45,7 @@ public class UtLocation implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 	
 	/** The ut activities. */
 	private Set<UtActivity> utActivities = new HashSet<UtActivity>(0);
@@ -66,7 +66,7 @@ public class UtLocation implements java.io.Serializable {
 	 * @param sysModificationUser the sys modification user
 	 */
 	public UtLocation(Long locationId, String locationName, String locationActive,
-			Timestamp sysModificationTimestamp, Long sysModificationUser) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser) {
 		this.locationId = locationId;
 		this.locationName = locationName;
 		this.locationActive = locationActive;
@@ -87,7 +87,7 @@ public class UtLocation implements java.io.Serializable {
 	 * @param utActivities the ut activities
 	 */
 	public UtLocation(Long locationId, UtPartner utPartner, String locationName, String locationDescription,
-			String locationActive, Timestamp sysModificationTimestamp, Long sysModificationUser,
+			String locationActive, Timestamp sysModificationTimestamp, ApnaUser sysModificationUser,
 			Set<UtActivity> utActivities) {
 		this.locationId = locationId;
 		this.utPartner = utPartner;
@@ -220,8 +220,9 @@ public class UtLocation implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER", nullable = false)
-	public Long getSysModificationUser() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -230,7 +231,7 @@ public class UtLocation implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 

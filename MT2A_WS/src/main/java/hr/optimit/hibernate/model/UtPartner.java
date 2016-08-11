@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -40,7 +42,7 @@ public class UtPartner implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 	
 	/** The ut projects. */
 	private Set<UtProject> utProjects = new HashSet<UtProject>(0);
@@ -65,7 +67,7 @@ public class UtPartner implements java.io.Serializable {
 	 * @param sysModificationUser the sys modification user
 	 */
 	public UtPartner(Long partnerId, String partnerShortname, String partnerName, String partnerActive,
-			Timestamp sysModificationTimestamp, Long sysModificationUser) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser) {
 		this.partnerId = partnerId;
 		this.partnerShortname = partnerShortname;
 		this.partnerName = partnerName;
@@ -87,7 +89,7 @@ public class UtPartner implements java.io.Serializable {
 	 * @param utLocations the ut locations
 	 */
 	public UtPartner(Long partnerId, String partnerShortname, String partnerName, String partnerActive,
-			Timestamp sysModificationTimestamp, Long sysModificationUser, Set<UtProject> utProjects, Set<UtLocation> utLocations) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser, Set<UtProject> utProjects, Set<UtLocation> utLocations) {
 		this.partnerId = partnerId;
 		this.partnerShortname = partnerShortname;
 		this.partnerName = partnerName;
@@ -199,8 +201,9 @@ public class UtPartner implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER")
-	public Long getSysModificationUser() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -209,7 +212,7 @@ public class UtPartner implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 
