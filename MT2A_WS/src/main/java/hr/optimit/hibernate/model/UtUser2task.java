@@ -37,7 +37,7 @@ public class UtUser2task implements java.io.Serializable {
 	private Timestamp sysModificationTimestamp;
 	
 	/** The sys modification user. */
-	private Long sysModificationUser;
+	private ApnaUser sysModificationUser;
 
 	/**
 	 * Instantiates a new ut user2task.
@@ -56,7 +56,7 @@ public class UtUser2task implements java.io.Serializable {
 	 * @param sysModificationUser the sys modification user
 	 */
 	public UtUser2task(Long user2taskId, UtTask utTask, Long user2taskUserId, Long user2taskPriority,
-			Timestamp sysModificationTimestamp, Long sysModificationUser) {
+			Timestamp sysModificationTimestamp, ApnaUser sysModificationUser) {
 		this.user2taskId = user2taskId;
 		this.utTask = utTask;
 		this.user2taskUserId = user2taskUserId;
@@ -148,8 +148,7 @@ public class UtUser2task implements java.io.Serializable {
 	 *
 	 * @return the sys modification timestamp
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	@Column(name = "SYS_MODIFICATION_TIMESTAMP", nullable = false)
 	public Timestamp getSysModificationTimestamp() {
 		return this.sysModificationTimestamp;
 	}
@@ -168,8 +167,9 @@ public class UtUser2task implements java.io.Serializable {
 	 *
 	 * @return the sys modification user
 	 */
-	@Column(name = "SYS_MODIFICATION_USER", nullable = false)
-	public Long getSysModificationUser() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "SYS_MODIFICATION_USER", nullable = false)
+	public ApnaUser getSysModificationUser() {
 		return this.sysModificationUser;
 	}
 
@@ -178,7 +178,7 @@ public class UtUser2task implements java.io.Serializable {
 	 *
 	 * @param sysModificationUser the new sys modification user
 	 */
-	public void setSysModificationUser(Long sysModificationUser) {
+	public void setSysModificationUser(ApnaUser sysModificationUser) {
 		this.sysModificationUser = sysModificationUser;
 	}
 
