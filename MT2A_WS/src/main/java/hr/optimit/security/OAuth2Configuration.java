@@ -55,7 +55,7 @@ public class OAuth2Configuration {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.requiresChannel()
-				.anyRequest().requiresSecure()
+//				.anyRequest().requiresSecure()
 				.and()
 				.authorizeRequests()
 				.antMatchers("/mt2a/api/**").authenticated();
@@ -72,7 +72,9 @@ public class OAuth2Configuration {
 
 		private static final String PROP_SECRET = "secret";
 
-		private static final String PROP_TOKEN_VALIDITY_SECONDS = "tokenValidityInSeconds";
+		private static final String PROP_ACCESS_TOKEN_VALIDITY = "accessTokenValidity";
+		
+		private static final String PROP_REFRESH_TOKEN_VALIDITY = "refreshTokenValidity";
 
 		private RelaxedPropertyResolver propertyResolver;
 
@@ -105,7 +107,9 @@ public class OAuth2Configuration {
 					.authorizedGrantTypes("password", "refresh_token")
 					.secret(propertyResolver.getProperty(PROP_SECRET))
 					.accessTokenValiditySeconds(
-							propertyResolver.getProperty(PROP_TOKEN_VALIDITY_SECONDS, Integer.class, 1800));
+							propertyResolver.getProperty(PROP_ACCESS_TOKEN_VALIDITY, Integer.class, 1800))
+					.refreshTokenValiditySeconds(
+							propertyResolver.getProperty(PROP_ACCESS_TOKEN_VALIDITY, Integer.class, 604800));
 
 		}
 
