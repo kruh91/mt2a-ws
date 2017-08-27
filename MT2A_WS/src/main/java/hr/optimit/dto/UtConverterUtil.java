@@ -17,21 +17,34 @@ import hr.optimit.hibernate.model.UtProject;
 import hr.optimit.hibernate.model.UtTask;
 import hr.optimit.service.ApnaUserService;
 
+/**
+ * The Class UtConverterUtil.
+ */
 @Component("utConverterUtil")
 public class UtConverterUtil {
 
+	/** The ut activity repository. */
 	@Autowired
 	private UtActivityRepository utActivityRepository;
 
+	/** The ut location repository. */
 	@Autowired
 	private UtLocationRepository utLocationRepository;
 
+	/** The ut task repository. */
 	@Autowired
 	private UtTaskRepository utTaskRepository;
 
+	/** The apna user service. */
 	@Autowired
 	private ApnaUserService apnaUserService;
 
+	/**
+	 * Convert ut activty to DTO.
+	 *
+	 * @param activity the activity
+	 * @return the ut activity DTO
+	 */
 	public UtActivityDTO convertUtActivtyToDTO(UtActivity activity) {
 
 		UtActivityDTO dto = new UtActivityDTO();
@@ -56,6 +69,12 @@ public class UtConverterUtil {
 		return dto;
 	}
 
+	/**
+	 * Convert ut activty dto to ut activity.
+	 *
+	 * @param dto the dto
+	 * @return the ut activity
+	 */
 	public UtActivity convertUtActivtyDtoToUtActivity(UtActivityDTO dto) {
 
 		UtActivity utActivity = null;
@@ -83,6 +102,12 @@ public class UtConverterUtil {
 		return utActivity;
 	}
 
+	/**
+	 * Convert ut location to DTO.
+	 *
+	 * @param location the location
+	 * @return the ut location DTO
+	 */
 	public UtLocationDTO convertUtLocationToDTO(UtLocation location) {
 
 		UtLocationDTO dto = new UtLocationDTO();
@@ -92,6 +117,12 @@ public class UtConverterUtil {
 		return dto;
 	}
 
+	/**
+	 * Convert ut project to DTO.
+	 *
+	 * @param project the project
+	 * @return the ut project DTO
+	 */
 	public UtProjectDTO convertUtProjectToDTO(UtProject project) {
 
 		UtProjectDTO dto = new UtProjectDTO();
@@ -105,6 +136,12 @@ public class UtConverterUtil {
 		return dto;
 	}
 
+	/**
+	 * Convert ut task to DTO.
+	 *
+	 * @param task the task
+	 * @return the ut task DTO
+	 */
 	public UtTaskDTO convertUtTaskToDTO(UtTask task) {
 
 		UtTaskDTO dto = new UtTaskDTO();
@@ -117,6 +154,12 @@ public class UtConverterUtil {
 		return dto;
 	}
 	
+	/**
+	 * Gets the date with minute precision.
+	 *
+	 * @param date the date
+	 * @return the date with minute precision
+	 */
 	private Date getDateWithMinutePrecision(Date date) {
 		
 		Calendar calendar = Calendar.getInstance();

@@ -15,19 +15,34 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
+/**
+ * The Class SecurityConfiguration.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	/** The user details service. */
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	/**
+	 * Password encoder.
+	 *
+	 * @return the password encoder
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new StandardPasswordEncoder();
 	}
 	
 
+	/**
+	 * Configure global.
+	 *
+	 * @param auth the auth
+	 * @throws Exception the exception
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
@@ -41,10 +56,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
-	 @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
+	 /**
+ 	 * The Class GlobalSecurityConfiguration.
+ 	 */
+ 	@EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 	 public static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 	
-		 @Override
+ 		@Override
 	 	protected MethodSecurityExpressionHandler createExpressionHandler() {
 			 return new OAuth2MethodSecurityExpressionHandler();
 		 }

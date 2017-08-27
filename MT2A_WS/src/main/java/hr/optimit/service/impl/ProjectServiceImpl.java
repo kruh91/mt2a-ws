@@ -15,16 +15,22 @@ import hr.optimit.hibernate.model.UtProject;
 import hr.optimit.service.ApnaUserService;
 import hr.optimit.service.ProjectService;
 
+/**
+ * The Class ProjectServiceImpl.
+ */
 @Transactional
 @Service("projectService")
 public class ProjectServiceImpl implements ProjectService {
 
+	/** The ut project repository. */
 	@Autowired
 	private UtProjectRepository utProjectRepository;
 	
+	/** The ut converter util. */
 	@Autowired
 	private UtConverterUtil utConverterUtil;
 	
+	/** The apna user service. */
 	@Autowired
 	private ApnaUserService apnaUserService;
 	

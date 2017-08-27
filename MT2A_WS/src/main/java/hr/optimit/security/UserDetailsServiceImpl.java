@@ -17,11 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 import hr.optimit.hibernate.dao.ApnaUserRepository;
 import hr.optimit.hibernate.model.ApnaUser;
 
+/**
+ * The Class UserDetailsServiceImpl.
+ */
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
+	/** The log. */
 	private final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
+	/** The apna user repository. */
 	@Autowired
 	private ApnaUserRepository apnaUserRepository;
 	

@@ -16,17 +16,22 @@ import hr.optimit.hibernate.model.UtActivity;
 import hr.optimit.service.ActivityService;
 import hr.optimit.service.ApnaUserService;
 
-//@ComponentScan
+/**
+ * The Class ActivityServiceImpl.
+ */
 @Transactional
 @Service("activityService")
 public class ActivityServiceImpl implements ActivityService {
 
+	/** The ut activity repository. */
 	@Autowired
 	private UtActivityRepository utActivityRepository;
 
+	/** The ut converter util. */
 	@Autowired
 	private UtConverterUtil utConverterUtil;
 
+	/** The apna user service. */
 	@Autowired
 	private ApnaUserService apnaUserService;
 

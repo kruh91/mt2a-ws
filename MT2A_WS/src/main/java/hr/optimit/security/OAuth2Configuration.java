@@ -22,16 +22,24 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * The Class OAuth2Configuration.
+ */
 @Configuration
 public class OAuth2Configuration {
 
+	/**
+	 * The Class ResourceServerConfiguration.
+	 */
 	@Configuration
 	@EnableResourceServer
 	protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
+		/** The custom authentication entry point. */
 		@Autowired
 		private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
+		/** The custom logout success handler. */
 		@Autowired
 		private CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
@@ -62,30 +70,46 @@ public class OAuth2Configuration {
 		}
 	}
 
+	/**
+	 * The Class AuthorizationServerConfiguration.
+	 */
 	@Configuration
 	@EnableAuthorizationServer
 	protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter implements EnvironmentAware {
 
+		/** The Constant ENV_OAUTH. */
 		private static final String ENV_OAUTH = "authentication.oauth.";
 
+		/** The Constant PROP_CLIENTID. */
 		private static final String PROP_CLIENTID = "clientid";
 
+		/** The Constant PROP_SECRET. */
 		private static final String PROP_SECRET = "secret";
 
+		/** The Constant PROP_ACCESS_TOKEN_VALIDITY. */
 		private static final String PROP_ACCESS_TOKEN_VALIDITY = "accessTokenValidity";
 		
+		/** The Constant PROP_REFRESH_TOKEN_VALIDITY. */
 		private static final String PROP_REFRESH_TOKEN_VALIDITY = "refreshTokenValidity";
 
+		/** The property resolver. */
 		private RelaxedPropertyResolver propertyResolver;
 
+		/** The data source. */
 		@Autowired
 		private DataSource dataSource;
 
+		/**
+		 * Token store.
+		 *
+		 * @return the token store
+		 */
 		@Bean
 		public TokenStore tokenStore() {
 			return new JdbcTokenStore(dataSource);
 		}
 
+		/** The authentication manager. */
 		@Autowired
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;

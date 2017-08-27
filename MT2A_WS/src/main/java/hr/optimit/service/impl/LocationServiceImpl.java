@@ -13,13 +13,18 @@ import hr.optimit.hibernate.dao.UtLocationRepository;
 import hr.optimit.hibernate.model.UtLocation;
 import hr.optimit.service.LocationService;
 
+/**
+ * The Class LocationServiceImpl.
+ */
 @Transactional
 @Service("locationService")
 public class LocationServiceImpl implements LocationService {
 	
+	/** The ut location repository. */
 	@Autowired
 	private UtLocationRepository utLocationRepository;
 	
+	/** The ut converter util. */
 	@Autowired
 	private UtConverterUtil utConverterUtil;
 

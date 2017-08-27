@@ -18,13 +18,23 @@ import hr.optimit.hibernate.model.UtActivity;
 import hr.optimit.service.ActivityService;
 import hr.optimit.util.Constants;
 
+/**
+ * The Class ActivityController.
+ */
 @RestController
 @RequestMapping("/mt2a/api/activities")
 public class ActivityController extends AbstractController {
 
+	/** The activity service. */
 	@Autowired
 	private ActivityService activityService;
 
+	/**
+	 * Save activity.
+	 *
+	 * @param activityDTO the activity DTO
+	 * @return the rest response
+	 */
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public RestResponse saveActivity(@RequestBody UtActivityDTO activityDTO) {
@@ -39,6 +49,13 @@ public class ActivityController extends AbstractController {
 
 	}
 
+	/**
+	 * Find activities for user by start date and end date.
+	 *
+	 * @param startDate the start date
+	 * @param endDate the end date
+	 * @return the list
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<UtActivityDTO> findActivitiesForUserByStartDateAndEndDate(

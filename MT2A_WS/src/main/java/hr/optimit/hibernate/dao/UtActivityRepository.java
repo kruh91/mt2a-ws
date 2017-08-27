@@ -11,12 +11,29 @@ import org.springframework.data.repository.query.Param;
 
 import hr.optimit.hibernate.model.UtActivity;
 
+/**
+ * The Interface UtActivityRepository.
+ */
 public interface UtActivityRepository extends AbstractJpaRepository<UtActivity, Long> {
 	
+	/**
+	 * Find by activity user user username and activity start date between order by activity start date desc.
+	 *
+	 * @param username the username
+	 * @param startDate the start date
+	 * @param endDate the end date
+	 * @return the list
+	 */
 	public List<UtActivity> findByActivityUserUserUsernameAndActivityStartDateBetweenOrderByActivityStartDateDesc(String username, 
 			@Temporal(TemporalType.TIMESTAMP) Date startDate, 
 			@Temporal(TemporalType.TIMESTAMP) Date endDate);
 	
+	/**
+	 * Find activities for user with date overlap.
+	 *
+	 * @param utActivity the ut activity
+	 * @return the list
+	 */
 	@Query("select act from UtActivity act"
 			+ " where act.activityUser.userId = :#{#utActivity.activityUser.userId}"
 			+ " and act.activityStartDate = :#{#utActivity.activityStartDate}"

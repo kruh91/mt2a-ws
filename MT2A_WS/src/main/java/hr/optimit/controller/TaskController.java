@@ -12,13 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import hr.optimit.dto.UtTaskDTO;
 import hr.optimit.service.TaskService;
 
+/**
+ * The Class TaskController.
+ */
 @RestController
 @RequestMapping("/mt2a/api/tasks")
 public class TaskController {
 	
+	/** The task service. */
 	@Autowired
 	private TaskService taskService;
 
+	/**
+	 * Gets the tasks for current user by project id.
+	 *
+	 * @param projectId the project id
+	 * @return the tasks for current user by project id
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<UtTaskDTO> getTasksForCurrentUserByProjectId(@RequestParam("projectId") Long projectId) {

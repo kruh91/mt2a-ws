@@ -10,10 +10,14 @@ import hr.optimit.hibernate.dao.ApnaUserRepository;
 import hr.optimit.hibernate.model.ApnaUser;
 import hr.optimit.service.ApnaUserService;
 
+/**
+ * The Class ApnaUserServiceImpl.
+ */
 @Transactional
 @Service("apnaUserService")
 public class ApnaUserServiceImpl implements ApnaUserService {
 
+	/** The apna user repository. */
 	@Autowired
 	private ApnaUserRepository apnaUserRepository;
 	

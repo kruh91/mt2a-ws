@@ -15,16 +15,22 @@ import hr.optimit.hibernate.model.UtTask;
 import hr.optimit.service.ApnaUserService;
 import hr.optimit.service.TaskService;
 
+/**
+ * The Class TaskServiceImpl.
+ */
 @Transactional
 @Service("taskService")
 public class TaskServiceImpl implements TaskService {
 
+	/** The ut task repository. */
 	@Autowired
 	private UtTaskRepository utTaskRepository;
 	
+	/** The ut converter util. */
 	@Autowired
 	private UtConverterUtil utConverterUtil;
 	
+	/** The apna user service. */
 	@Autowired
 	private ApnaUserService apnaUserService;
 	
